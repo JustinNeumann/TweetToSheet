@@ -1,4 +1,4 @@
-Get your own website for free!
+Get a slim "webserver Twitter Streaming API to Google Spreadsheet integration scenario" ready to run!
 
 1.Get an GitHub account. Fork this project into your own project.
 2.Get an Windows Azure account. Create a Website in the freely available version and use your GitHub project as the linked source control.
