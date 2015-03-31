@@ -109,4 +109,11 @@ var T = new Twit({
 //
 var stream = T.stream('statuses/filter', { track: ['predictive', 'analytics', 'data science'] });
 
+	stream.on('tweet', function (tweet)
+	{
+	  //console.log(tweet);
+	  if (tweet.text.indexOf('RT') > -1) return;
+	  saveTweetToSheet(tweet);
+	});
+
 module.exports = app;
