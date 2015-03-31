@@ -80,6 +80,14 @@ function saveTweetToSheet(obj)
 					var date = new Date(parseInt(obj[p]));
 					data[p] = date.toJSON();
 				}
+				else if (p == 'user')
+				{
+					data[p] = obj.user.name;
+				}
+				else if (p == 'entities')
+				{
+					data[p] = JSON.stringify(obj.entities);
+				}
 				else
 				{
 					data[p] = obj[p];
