@@ -75,14 +75,20 @@ function saveTweetToSheet(obj)
 			if( obj.hasOwnProperty(p) )
 			{
 				result += p + " , " + obj[p] + "\n";
-				if (p == 'timestamp_ms')
+				if (p == 'id_str' | p == 'source' | p == 'truncated' | p == 'in_reply_to_status_id' | p == 'in_reply_to_status_id_str' | p == 'in_reply_to_user_id' | p == 'in_reply_to_user_id_str' | p == 'in_reply_to_screen_name' | p == 'geo' | p == 'coordinates' | p == 'place' | p == 'contributors' | p == 'retweet_count' | p =='favorite_count' | p == 'entities' | p == 'favorited' | p == 'retweeted' | p == 'possibly_sensitive' | p == 'filter_level' | p == 'lang' | p == 'timestamp_ms')
+				{
+					var date = new Date(parseInt(obj[p]));
+					data[p] = date.toJSON();
+				}
+				else if (p == 'timestamp_ms')
 				{
 					var date = new Date(parseInt(obj[p]));
 					data[p] = date.toJSON();
 				}
 				else if (p == 'user')
 				{
-					data[p] = obj.user.name;
+					//console.log(JSON.stringify(obj.user));
+					data[p] = obj.user.screen_name;
 				}
 				else if (p == 'entities')
 				{
