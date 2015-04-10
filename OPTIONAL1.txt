@@ -1,5 +1,6 @@
 function processBatch()
 {
+
   var text = '';
   
   // The code below opens a spreadsheet using its ID and logs the name for it.
@@ -47,15 +48,15 @@ function processBatch()
     var responseText = UrlFetchApp.fetch(url);
     var responseJSON = JSON.parse(responseText);
     
-    Logger.log(timestamp + ': ' + JSON.stringify(responseJSON.keywords)); // "\r\n"
+    //Logger.log(timestamp + ': ' + JSON.stringify(responseJSON.keywords));
     
     var output = SpreadsheetApp.openById("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX").getSheets()[0];
     
-    responseJSON.keywords.forEach( function( item ) 
+    responseJSON.keywords.forEach( function( keyword ) 
                                   {
-                                    if (item.relevance > 0.5)
+                                    if (keyword.relevance > 0.5)
                                     {
-                                      var row = [item.text, timestamp];
+                                      var row = [keyword.text, timestamp];
                                       output.appendRow(row);
                                     }
                                   });
