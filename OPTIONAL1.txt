@@ -1,0 +1,69 @@
+function processBatch()
+{
+  var text = '';
+  
+  // The code below opens a spreadsheet using its ID and logs the name for it.
+  // Note that the spreadsheet is NOT physically opened on the client side.
+  // It is opened on the server only (for modification by the script).
+  var input = SpreadsheetApp.openById("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+  
+  // OKAY TO USE THIS EXAMPLE or code based on it.
+  var lastRow = ss.getSheets()[0].getLastRow();
+  var tweets = ss.getSheets()[0].getRange(1, 2, lastRow).getValues();
+  var timestamps = ss.getSheets()[0].getRange(1, 1, lastRow).getValues();
+  var indexToday;
+  var now = new Date();
+  now.setHours(2);
+  now.setMinutes(0);
+  now.setSeconds(0);
+  
+  for (var a = 1; a < timestamps.length; a++)
+  {    
+    if (Date.parse(timestamps[a][0]) > now)
+    {
+      indexToday = a;
+      break;
+    }
+  }
+  
+  
+  var timestamp;
+  
+  while (indexToday < timestamps.length - 11)
+  {
+  
+
+    for (var x = indexToday; x < indexToday + 10; x++)
+    {
+      timestamp = timestamps[x][0];
+      text += tweets[x][0] + ' ';
+    }
+    
+    var url = 'http://access.alchemyapi.com/calls/text/TextGetRankedKeywords?'
+    + 'apikey=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX' // AlchemyAPI
+    + '&text=' + encodeURIComponent(text) + '&outputMode=json';
+    
+    
+    var responseText = UrlFetchApp.fetch(url);
+    var responseJSON = JSON.parse(responseText);
+    
+    Logger.log(timestamp + ': ' + JSON.stringify(responseJSON.keywords)); // "\r\n"
+    
+    var output = SpreadsheetApp.openById("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX").getSheets()[0];
+    
+    responseJSON.keywords.forEach( function( item ) 
+                                  {
+                                    if (item.relevance > 0.5)
+                                    {
+                                      var row = [item.text, timestamp];
+                                      output.appendRow(row);
+                                    }
+                                  });
+    
+    indexToday += 10;
+    text = '';
+    
+  }
+
+
+}
