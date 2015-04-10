@@ -9,4 +9,4 @@ Get a slim "Twitter Streaming API to Google Spreadsheet on Windows Azure Website
 7.Finally you have to write the following headers into the top row of your spreadsheet (keep in order in order to match Twitter Streaming API JSON)
 
 
-created-at	id-str	text	source	truncated	in-reply-to-status-id	in-reply-to-status-id-str	in-reply-to-user-id	in-reply-to-user-id-str	in-reply-to-screen-name	user	geo	coordinates	place	contributors	retweet-count	favorite-count	entities	favorited	retweeted	possibly-sensitive	filter-level	lang	timestamp-ms
+created-at, text, user
