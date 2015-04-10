@@ -13,7 +13,7 @@ function processBatch()
   var timestamps = ss.getSheets()[0].getRange(1, 1, lastRow).getValues();
   var indexToday;
   var now = new Date();
-  now.setHours(2);
+  now.setHours(2); // for GMT+1 summer time, change accordingly to your time zone and if, daylight savings
   now.setMinutes(0);
   now.setSeconds(0); 
   
