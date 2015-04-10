@@ -8,4 +8,4 @@ Get a slim "Twitter Streaming API to Google Spreadsheet on Windows Azure Website
 6.Set up an Google Script to call your website every 5 minutes to avoid IIS 8.0 idling using this line of code       var response = UrlFetchApp.fetch("http://www.mywbsite.com/");
 7.Finally you have to write the following headers into the top row of your spreadsheet (keep in order in order to match Twitter Streaming API JSON)        created-at, text, user
 
-OPTIONAL1. Use the optional1.txt and set up a daily Google Script (before midnight) to write keyword-timestamp pairs into another Google Spreadsheet
+OPTIONAL1. Use the optional1.txt and set up a daily Google Script (before midnight) to write keyword-timestamp pairs based on the day's tweets into another Google Spreadsheet
