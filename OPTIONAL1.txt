@@ -15,7 +15,7 @@ function processBatch()
   var now = new Date();
   now.setHours(2);
   now.setMinutes(0);
-  now.setSeconds(0);
+  now.setSeconds(0); 
   
   for (var a = 1; a < timestamps.length; a++)
   {    
